@@ -2,7 +2,7 @@
 
 **Your Intelligent Career Partner for Resume Optimization**
 
-An advanced AI-powered application that analyzes, optimizes, and enhances resumes using cutting-edge AI technologies including ApyHub API, OpenAI GPT, and Google Gemini.
+An advanced AI-powered application that analyzes, optimizes, and enhances resumes using cutting-edge AI technologies including APILayer Resume Parser, OpenAI GPT, and Google Gemini.
 
 ---
 
@@ -26,12 +26,13 @@ An advanced AI-powered application that analyzes, optimizes, and enhances resume
 
 ### 🎯 Core Features
 
-1. **📊 ATS Score Analysis (ApyHub API)**
-   - Resume-job match scoring (0-100)
-   - Keyword match analysis
-   - Skills gap identification
-   - Experience alignment check
-   - Industry-standard scoring algorithm
+1. **📊 Resume Parsing & ATS Analysis (APILayer)**
+   - Comprehensive resume parsing with AI
+   - Automatic data extraction (name, email, phone, skills, experience)
+   - ATS compatibility scoring (0-100)
+   - Section completeness analysis
+   - Keyword optimization scoring
+   - Industry-standard algorithms
 
 2. **🤖 Dual-AI Enhancement**
    - OpenAI GPT-3.5 content optimization
@@ -79,7 +80,7 @@ An advanced AI-powered application that analyzes, optimizes, and enhances resume
 - **Streamlit-Lottie** - Animations
 
 ### AI & APIs
-- **ApyHub API** - Resume-job match scoring
+- **APILayer Resume Parser** - Professional resume parsing & analysis
 - **OpenAI GPT-3.5** - Content enhancement
 - **Google Gemini** - AI analysis
 - **spaCy** - NLP processing
@@ -108,7 +109,7 @@ Before you begin, ensure you have:
 - **Virtual environment** (recommended)
 - **Git** (for cloning)
 - **API Keys:**
-  - ApyHub API key
+  - APILayer API key (Resume Parser)
   - OpenAI API key
   - Google Gemini API key
 
@@ -183,20 +184,23 @@ GOOGLE_API_KEY=your_gemini_api_key_here
 OPENAI_API_KEY=your_openai_api_key_here
 ```
 
-### 2. ApyHub API Setup
+### 2. APILayer Resume Parser Setup
 
 Update `creds.txt` file:
 
 ```
-api key : your_apyhub_api_key_here
+api key : your_apilayer_api_key_here
 ```
 
-**Get Your ApyHub API Key:**
-1. Visit: https://apyhub.com
+**Get Your APILayer API Key:**
+1. Visit: https://apilayer.com
 2. Sign up for free account
-3. Navigate to API Keys section
-4. Copy your API key
-5. Paste in `creds.txt`
+3. Subscribe to Resume Parser API
+4. Navigate to API Dashboard
+5. Copy your API key
+6. Paste in `creds.txt`
+
+**API Documentation:** https://marketplace.apilayer.com/resume_parser-api
 
 ---
 
@@ -280,41 +284,58 @@ Once running, open your browser and navigate to:
 
 ## 🔗 API Integration
 
-### ApyHub Resume-Job Match API
+### APILayer Resume Parser API
 
-**Endpoint:** https://api.apyhub.com/ai/resume-parser/job-match
+**Endpoint:** https://api.apilayer.com/resume_parser/upload
+
+**API Key:** Add to `creds.txt`
 
 **Features:**
-- Resume-job compatibility scoring
-- Keyword matching
-- Skills gap analysis
-- Experience alignment
+- Comprehensive resume parsing
+- Automatic data extraction
+- ATS compatibility analysis
+- Structured resume data output
+
+**Parsed Data Includes:**
+- Personal information (name, email, phone, location)
+- Professional links (LinkedIn, GitHub)
+- Professional summary
+- Work experience with dates
+- Education history
+- Technical skills
+- Certifications
+- Languages
+- Total years of experience
 
 **Request Format:**
-```json
-{
-  "resume": "resume text here",
-  "job_description": "job description here"
-}
+```bash
+curl -X POST https://api.apilayer.com/resume_parser/upload \
+  -H "apikey: YOUR_API_KEY" \
+  -F "file=@resume.pdf"
 ```
 
 **Response:**
 ```json
 {
-  "data": {
-    "match_score": 85,
-    "keyword_match": 90,
-    "skills_match": 80,
-    "experience_match": 85,
-    "matched_keywords": [...],
-    "missing_keywords": [...]
-  }
+  "name": "John Doe",
+  "email": "john@example.com",
+  "phone": "+1234567890",
+  "location": "San Francisco, CA",
+  "linkedin_url": "linkedin.com/in/johndoe",
+  "github_url": "github.com/johndoe",
+  "summary": "Professional summary...",
+  "experience": [...],
+  "education": [...],
+  "skills": ["Python", "JavaScript", ...],
+  "certifications": [...],
+  "languages": [...],
+  "total_experience_years": 5
 }
 ```
 
 ### Fallback Mechanism
 
-If ApyHub API is unavailable:
+If APILayer API is unavailable:
 - Automatically falls back to local ATS scorer
 - Continues analysis without interruption
 - Notifies user of score source
@@ -533,7 +554,7 @@ This project is part of an Internshala assignment.
 
 ## 🙏 Acknowledgments
 
-- **ApyHub** - Resume-job match scoring API
+- **APILayer** - Professional Resume Parser API
 - **OpenAI** - GPT-3.5 for content enhancement
 - **Google** - Gemini AI for analysis
 - **Streamlit** - Web framework

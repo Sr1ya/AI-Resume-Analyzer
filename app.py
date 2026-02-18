@@ -31,7 +31,7 @@ from utils.ai_resume_analyzer import AIResumeAnalyzer
 from utils.resume_builder import ResumeBuilder
 from utils.resume_analyzer import ResumeAnalyzer
 from utils.ats_scorer import ATSScorer
-from utils.apyhub_scorer import ApyHubScorer
+from utils.apilayer_parser import APILayerParser
 from utils.openai_enhancer import OpenAIEnhancer
 from utils.pdf_exporter import PDFExporter
 from utils.enhanced_analyzer import EnhancedResumeAnalyzer
@@ -104,7 +104,7 @@ class ResumeApp:
 
         # Initialize new modules for assignment features
         self.ats_scorer = ATSScorer()
-        self.apyhub_scorer = ApyHubScorer()
+        self.apilayer_parser = APILayerParser()
         self.openai_enhancer = OpenAIEnhancer()
         self.pdf_exporter = PDFExporter()
         self.enhanced_analyzer = EnhancedResumeAnalyzer()

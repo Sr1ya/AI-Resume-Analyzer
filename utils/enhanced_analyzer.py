@@ -6,7 +6,7 @@ import streamlit as st
 import plotly.graph_objects as go
 from typing import Dict, Tuple
 from .ats_scorer import ATSScorer
-from .apyhub_scorer import ApyHubScorer
+from .apilayer_parser import APILayerParser
 from .openai_enhancer import OpenAIEnhancer
 from .ai_resume_analyzer import AIResumeAnalyzer
 
@@ -15,7 +15,7 @@ class EnhancedResumeAnalyzer:
     def __init__(self):
         """Initialize enhanced analyzer with all AI components"""
         self.ats_scorer = ATSScorer()
-        self.apyhub_scorer = ApyHubScorer()
+        self.apilayer_parser = APILayerParser()
         self.openai_enhancer = OpenAIEnhancer()
         self.gemini_analyzer = AIResumeAnalyzer()
 
@@ -32,12 +32,15 @@ class EnhancedResumeAnalyzer:
         """
         results = {}
 
-        # Step 1: Initial ATS Scoring using ApyHub API
-        st.write("🔍 **Step 1:** Calculating initial resume-job match score with ApyHub API...")
-        initial_score = self.apyhub_scorer.calculate_match_score(resume_text, job_description)
+        # Step 1: Initial ATS Scoring using APILayer Resume Parser
+        st.write("🔍 **Step 1:** Analyzing resume with APILayer Resume Parser API...")
+        initial_score = self.apilayer_parser.calculate_ats_score(resume_text, job_description)
         results['initial_score'] = initial_score
 
-        # Show source
+        # Show parsed data summary
+        parsed_data = initial_score.get('parsed_data', {})
+        if parsed_data.get('name'):
+            st.caption(f"👤 Detected: {parsed_data.get('name', 'Unknown')} | 📧 {parsed_data.get('email', 'N/A')}")
         st.caption(f"📊 Score Source: {initial_score.get('source', 'Unknown')}")
 
         # Display initial score
@@ -102,12 +105,15 @@ class EnhancedResumeAnalyzer:
         results['enhanced_text'] = enhanced_text
         results['suggestions'] = all_suggestions
 
-        # Step 3: Enhanced ATS Scoring using ApyHub API
-        st.write("\n📊 **Step 3:** Calculating enhanced resume-job match score with ApyHub API...")
-        enhanced_score = self.apyhub_scorer.calculate_match_score(enhanced_text, job_description)
+        # Step 3: Enhanced ATS Scoring using APILayer Resume Parser
+        st.write("\n📊 **Step 3:** Re-analyzing enhanced resume with APILayer...")
+        enhanced_score = self.apilayer_parser.calculate_ats_score(enhanced_text, job_description)
         results['enhanced_score'] = enhanced_score
 
-        # Show source
+        # Show enhanced parsed data
+        enhanced_parsed = enhanced_score.get('parsed_data', {})
+        if enhanced_parsed:
+            st.caption(f"✨ Enhanced: {len(enhanced_parsed.get('skills', []))} skills detected | {len(enhanced_parsed.get('experience', []))} experiences")
         st.caption(f"📊 Score Source: {enhanced_score.get('source', 'Unknown')}")
 
         # Calculate improvement

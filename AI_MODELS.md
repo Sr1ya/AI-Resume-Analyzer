@@ -2,51 +2,149 @@
 
 Smart Resume Analyzer uses advanced AI models to provide detailed analysis and feedback on your resume. This document explains the AI models integrated into the application and how they work.
 
-## Available AI Models
+---
 
-### 1. Google Gemini
+## 🤖 Available AI Models
 
-Google Gemini is a powerful AI model developed by Google that offers state-of-the-art natural language processing capabilities. In Smart Resume Analyzer, Gemini is used to:
+### Google Gemini
 
-- Analyze resume content and structure
-- Identify key skills and missing skills for target roles
-- Provide personalized recommendations for improvement
-- Score resumes based on quality and relevance
+Google Gemini is a powerful AI model that offers state-of-the-art natural language processing capabilities. In Smart Resume Analyzer, Gemini is used to:
 
-## How AI Analysis Works
+- **Analyze resume content and structure** - Comprehensive evaluation of your resume
+- **Identify key skills and missing skills** - Detect gaps for target roles
+- **Provide personalized recommendations** - Tailored suggestions for improvement
+- **Score resumes based on quality** - Objective scoring from 0-100
+
+---
+
+## ⚙️ How AI Analysis Works
 
 When you upload your resume for AI analysis, the following process occurs:
 
-1. **Text Extraction**: The system extracts text from your PDF or DOCX resume
-2. **AI Processing**: The selected AI model (Gemini or Claude) analyzes the resume text
-3. **Structured Analysis**: The AI generates a structured analysis including:
-   - Overall assessment
-   - Skills analysis (current and missing skills)
-   - Strengths
-   - Areas for improvement
-   - Recommended courses
-   - Resume score (0-100)
+1. **Text Extraction**
+   - The system extracts text from your PDF or DOCX resume
+   - Multiple extraction methods ensure accurate text capture
+   - OCR support for image-based PDFs
 
-## Configuring AI Models
+2. **AI Processing**
+   - Gemini AI model analyzes the resume text
+   - Contextual understanding of your experience and skills
+   - Comparison against job role requirements
 
-To use these AI models, you need to set up API keys in your `.env` file:
+3. **Structured Analysis**
+   The AI generates a comprehensive analysis including:
+   - Overall assessment and feedback
+   - Skills analysis (current skills and missing skills)
+   - Strengths highlighted
+   - Areas for improvement identified
+   - Recommended courses and learning resources
+   - Resume score (0-100 scale)
 
-```
-# API Keys for AI Models
+---
+
+## 🔧 Configuring AI Models
+
+To use the AI features, you need to set up API keys in your `.env` file:
+
+### Setup Instructions
+
+1. Create a `.env` file in the `utils/` directory
+2. Add your API key:
+
+```env
 GOOGLE_API_KEY=your_google_api_key_here
 ```
 
-- For Google Gemini, you need a Google API key from [Google AI Studio](https://makersuite.google.com/)
+### Getting Your API Key
 
-## Privacy and Data Handling
+**Google Gemini API:**
+- Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
+- Sign in with your Google account
+- Generate a new API key
+- Copy and paste it into your `.env` file
+
+---
+
+## 🔒 Privacy and Data Handling
 
 When using the AI analysis features:
 
-- Resume data is sent to the respective AI model providers (Google or Anthropic via OpenRouter)
-- Analysis results are stored in the local database for reference
-- No personal data is shared with third parties beyond what's necessary for analysis
-- You can delete your data at any time through the application
+- ✅ Resume data is sent to Google AI for analysis only
+- ✅ Analysis results are stored in your local database
+- ✅ No personal data is shared with unauthorized third parties
+- ✅ You can delete your data at any time through the application
+- ✅ All API communications are encrypted
 
-## Future AI Integrations
+### Data Security Best Practices
 
-We plan to integrate additional AI models in the future to provide even more comprehensive resume analysis and feedback. Stay tuned for updates! 
+1. Never commit your `.env` file to version control
+2. Keep your API keys confidential
+3. Regularly rotate your API keys
+4. Use environment variables for all sensitive data
+
+---
+
+## 📊 Analysis Features
+
+### Resume Scoring
+- **0-40:** Needs significant improvement
+- **41-60:** Fair resume, requires optimization
+- **61-80:** Good resume with minor improvements needed
+- **81-100:** Excellent resume, well-optimized
+
+### Skills Analysis
+- Identifies technical and soft skills
+- Compares skills against job requirements
+- Suggests missing skills to add
+- Recommends skill development resources
+
+### Content Optimization
+- Grammar and spelling suggestions
+- Structure and formatting recommendations
+- ATS (Applicant Tracking System) compatibility
+- Keyword optimization for target roles
+
+---
+
+## 🚀 Future AI Integrations
+
+We plan to integrate additional AI capabilities:
+
+- Multi-language resume analysis
+- Industry-specific optimization
+- Resume version comparison
+- Interview question generation based on resume
+- Career path suggestions
+
+---
+
+## 💡 Tips for Best Results
+
+1. **Upload clear, well-formatted PDFs** - Better text extraction
+2. **Provide job descriptions** - More targeted analysis
+3. **Review AI suggestions carefully** - AI is a tool, not a replacement for human judgment
+4. **Iterate and improve** - Use the feedback to refine your resume
+
+---
+
+## ⚠️ Limitations
+
+- AI analysis is based on patterns and may not capture all nuances
+- Results depend on the quality of the uploaded resume
+- OCR accuracy varies with PDF quality
+- API rate limits may apply based on your Google AI quota
+
+---
+
+## 📞 Support
+
+If you encounter issues with AI features:
+
+1. Verify your API key is correctly configured
+2. Check your internet connection
+3. Ensure you have API quota available
+4. Review the error messages for specific issues
+
+---
+
+**Developer:** Aditya
